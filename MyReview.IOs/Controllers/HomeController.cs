@@ -7,7 +7,7 @@ namespace MyReview.Controllers
     public class HomeController : UIViewController
     {
         private readonly HomeView _homeView;
-        private DateTime _panelDate = DateTime.Now;
+        private DateTime _panelDate;
 
         public HomeController()
         {
@@ -33,6 +33,7 @@ namespace MyReview.Controllers
         {
             base.ViewDidLoad();
 
+            PanelDate = DateTime.Now;
             RegisterEvents();
         }
 

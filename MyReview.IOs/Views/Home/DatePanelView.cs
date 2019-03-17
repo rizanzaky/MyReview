@@ -22,7 +22,6 @@ namespace MyReview.Views.Home
             LeftButton.SetTitleColor(UIColor.Black, UIControlState.Normal);
             LeftButton.SetTitleColor(UIColor.Gray, UIControlState.Highlighted);
             DateLabel = new UILabel { TranslatesAutoresizingMaskIntoConstraints = false };
-            DateLabel.Text = DateTime.Now.ToShortDateString();
             DateLabel.TextAlignment = UITextAlignment.Center;
             RightButton = new UIButton {TranslatesAutoresizingMaskIntoConstraints = false};
             RightButton.SetTitle(">", UIControlState.Normal);
