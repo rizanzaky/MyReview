@@ -17,7 +17,7 @@ namespace MyReview.Views.Home.Targets
             var targetItem = DataSource[indexPath.Row];
             
             cell.TextLabel.Text = targetItem.Name;
-            cell.Accessory = UITableViewCellAccessory.Checkmark;
+            cell.Accessory = targetItem.IsMarked ? UITableViewCellAccessory.Checkmark : UITableViewCellAccessory.None;
 
             return cell;
         }
@@ -40,15 +40,14 @@ namespace MyReview.Views.Home.Targets
 
         private UIContextualAction GetAction(UITableView tableView, NSIndexPath indexPath)
         {
-            var cell = tableView.CellAt(indexPath);
             var action = UIContextualAction.FromContextualActionStyle
             (
                 UIContextualActionStyle.Normal,
-                cell.Accessory == UITableViewCellAccessory.Checkmark ? "UnMarkTarget" : "MarkTarget",
+                DataSource[indexPath.Row].IsMarked ? "UnMarkTarget" : "MarkTarget",
                 (markTarget, view, success) =>
                 {
-                    cell.Accessory = cell.Accessory == UITableViewCellAccessory.Checkmark
-                        ? UITableViewCellAccessory.None : UITableViewCellAccessory.Checkmark;
+                    DataSource[indexPath.Row].IsMarked = !DataSource[indexPath.Row].IsMarked;
+                    tableView.ReloadRows(new[] {indexPath}, UITableViewRowAnimation.None);
                     success(true);
                 });
 
