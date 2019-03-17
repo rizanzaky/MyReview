@@ -67,6 +67,7 @@ namespace MyReview.Controllers
         {
             _homeView.DatePanel.LeftButton.TouchUpInside += OnLeftButtonClicked;
             _homeView.DatePanel.RightButton.TouchUpInside += OnRightButtonClicked;
+
         }
 
         private void UnregisterEvents()
