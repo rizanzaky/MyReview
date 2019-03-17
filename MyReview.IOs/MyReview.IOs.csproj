@@ -65,11 +65,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Core\Models\TargetModel.cs" />
+    <Compile Include="Core\ViewModels\TargetsViewModel.cs" />
     <Compile Include="Extensions\LayoutHelper.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Views\Home\DatePanelView.cs" />
     <Compile Include="Views\Home\HomeView.cs" />
+    <Compile Include="Views\Home\Targets\TargetsTableSource.cs" />
+    <Compile Include="Views\Home\Targets\TargetsTableView.cs" />
+    <Content Include="TargetDataFile.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Info.plist">
       <SubType>Designer</SubType>
     </None>
@@ -127,6 +134,7 @@
     </ImageAsset>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Core\Services\" />
     <Folder Include="Resources\Assets.xcassets\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

@@ -16,9 +16,9 @@ namespace MyReview.Extensions
             constraint.Active = true;
             return constraint;
         }
-        public static NSLayoutConstraint AlignTopAnchor(this UIView view, UIView parent, float constant)
+        public static NSLayoutConstraint AlignTopAnchor(this UIView view, NSLayoutYAxisAnchor anchor, float constant)
         {
-            var constraint = view.TopAnchor.ConstraintEqualTo(parent.TopAnchor, constant);
+            var constraint = view.TopAnchor.ConstraintEqualTo(anchor, constant);
             constraint.Active = true;
             return constraint;
         }

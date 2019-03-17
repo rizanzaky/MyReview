@@ -38,18 +38,18 @@ namespace MyReview.Views.Home
             // constraints
             TranslatesAutoresizingMaskIntoConstraints = false;
 
-            LeftButton.AlignTopAnchor(this, 5f);
+            LeftButton.AlignTopAnchor(TopAnchor, 5f);
             LeftButton.AlignLeftAnchor(LeftAnchor, 10f);
             LeftButton.AlignBottomAnchor(this, 5f);
             LeftButton.AlignWidthAnchor(80f);
             LeftButton.AlignHeightAnchor(50f);
 
-            DateLabel.AlignTopAnchor(this, 5f);
+            DateLabel.AlignTopAnchor(TopAnchor, 5f);
             DateLabel.AlignBottomAnchor(this, 5f);
             DateLabel.AlignLeftAnchor(LeftButton.RightAnchor, 10f);
             DateLabel.AlignRightAnchor(RightButton.LeftAnchor, 10f);
 
-            RightButton.AlignTopAnchor(this, 5f);
+            RightButton.AlignTopAnchor(TopAnchor, 5f);
             RightButton.AlignRightAnchor(RightAnchor, 10f);
             RightButton.AlignBottomAnchor(this, 5f);
             RightButton.AlignWidthAnchor(80f);

@@ -1,5 +1,7 @@
 ﻿using System;
+using MyReview.Core.ViewModels;
 using MyReview.Views.Home;
+using MyReview.Views.Home.Targets;
 using UIKit;
 
 namespace MyReview.Controllers
@@ -8,13 +10,17 @@ namespace MyReview.Controllers
     {
         private readonly HomeView _homeView;
         private DateTime _panelDate;
+        private readonly TargetsTableSource _targetsTableSource;
+        private readonly TargetsViewModel _homeViewModel;
 
         public HomeController()
         {
             _homeView = new HomeView();
+            _targetsTableSource = new TargetsTableSource();
+            _homeViewModel = new TargetsViewModel();
         }
 
-        public DateTime PanelDate
+        private DateTime PanelDate
         {
             get => _panelDate;
             set
@@ -34,6 +40,9 @@ namespace MyReview.Controllers
             base.ViewDidLoad();
 
             PanelDate = DateTime.Now;
+            _targetsTableSource.DataSource = _homeViewModel.Targets;
+            _homeView.TargetsTable.Source = _targetsTableSource;
+
             RegisterEvents();
         }
 
