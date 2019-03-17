@@ -1,8 +1,8 @@
-﻿using Blank.Controllers;
-using Foundation;
+﻿using Foundation;
+using MyReview.Controllers;
 using UIKit;
 
-namespace Blank
+namespace MyReview
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the
     // User Interface of the application, as well as listening (and optionally responding) to application events from iOS.

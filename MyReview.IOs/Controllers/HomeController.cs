@@ -1,8 +1,7 @@
-﻿using Blank.Extensions;
-using Blank.Views;
+﻿using MyReview.Views.Home;
 using UIKit;
 
-namespace Blank.Controllers
+namespace MyReview.Controllers
 {
     public class HomeController : UIViewController
     {
