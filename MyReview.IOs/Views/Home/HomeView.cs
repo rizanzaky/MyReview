@@ -5,7 +5,7 @@ namespace MyReview.Views.Home
 {
     public class HomeView : UIView
     {
-        private DatePanelView _datePanel;
+        public DatePanelView DatePanel { get; private set; }
 
         public HomeView()
         {
@@ -15,18 +15,18 @@ namespace MyReview.Views.Home
         private void BuildView()
         {
             // create
-            _datePanel = new DatePanelView();
+            DatePanel = new DatePanelView();
 
             // styles
             BackgroundColor = UIColor.White;
 
             // hierarchy
-            Add(_datePanel);
+            Add(DatePanel);
 
             // constraints
-            _datePanel.AlignLeftAnchor(LeftAnchor, 5f);
-            _datePanel.AlignTopAnchor(this, 20f);
-            _datePanel.AlignRightAnchor(RightAnchor, 5f);
+            DatePanel.AlignLeftAnchor(LeftAnchor, 5f);
+            DatePanel.AlignTopAnchor(this, 20f);
+            DatePanel.AlignRightAnchor(RightAnchor, 5f);
         }
     }
 }
