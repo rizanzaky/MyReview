@@ -74,6 +74,9 @@
     <Compile Include="Views\Home\HomeView.cs" />
     <Compile Include="Views\Home\Targets\TargetsTableSource.cs" />
     <Compile Include="Views\Home\Targets\TargetsTableView.cs" />
+    <Content Include="MarkingsDataFile.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="TargetDataFile.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
