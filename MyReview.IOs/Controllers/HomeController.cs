@@ -56,11 +56,17 @@ namespace MyReview.Controllers
         private void OnRightButtonClicked(object sender, EventArgs args)
         {
             PanelDate = PanelDate.AddDays(1);
+            _homeViewModel.MergeMarkingsIntoTargets(PanelDate);
+            _targetsTableSource.DataSource = _homeViewModel.Targets;
+            _homeView.TargetsTable.ReloadData();
         }
 
         private void OnLeftButtonClicked(object sender, EventArgs args)
         {
             PanelDate = PanelDate.AddDays(-1);
+            _homeViewModel.MergeMarkingsIntoTargets(PanelDate);
+            _targetsTableSource.DataSource = _homeViewModel.Targets;
+            _homeView.TargetsTable.ReloadData();
         }
 
         private void RegisterEvents()
