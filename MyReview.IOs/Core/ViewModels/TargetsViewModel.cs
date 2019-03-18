@@ -58,7 +58,19 @@ namespace MyReview.Core.ViewModels
 
         private void AddMarking(int itemId, DateTime itemDate)
         {
-
+            try
+            {
+                var dataLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "database.db3");
+                using (var database = new SQLiteConnection(dataLocation))
+                {
+                    database.Execute($"INSERT INTO Markings (TargetId, Date) VALUES ({itemId}, \"{_panelDate:d/M/yyyy}\");");
+                    Markings = GetMarkings();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
         }
 
         private void DeleteMarking(int itemId, DateTime itemDate)
@@ -68,7 +80,7 @@ namespace MyReview.Core.ViewModels
                 var dataLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "database.db3");
                 using (var database = new SQLiteConnection(dataLocation))
                 {
-                    database.Execute($"DELETE from Markings WHERE TargetId={itemId} AND Date=\"{_panelDate:d/M/yyyy}\""); 
+                    database.Execute($"DELETE from Markings WHERE TargetId={itemId} AND Date=\"{_panelDate:d/M/yyyy}\";"); 
                     Markings = GetMarkings();
                 }
             }
