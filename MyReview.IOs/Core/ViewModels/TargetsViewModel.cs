@@ -65,7 +65,12 @@ namespace MyReview.Core.ViewModels
         {
             try
             {
-
+                var dataLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "database.db3");
+                using (var database = new SQLiteConnection(dataLocation))
+                {
+                    database.Execute($"DELETE from Markings WHERE TargetId={itemId} AND Date=\"{_panelDate:d/M/yyyy}\""); 
+                    Markings = GetMarkings();
+                }
             }
             catch (Exception e)
             {
