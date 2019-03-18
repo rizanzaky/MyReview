@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using MyReview.Core.Models;
+using SQLite;
 
 namespace MyReview.Core.ViewModels
 {
@@ -18,14 +19,14 @@ namespace MyReview.Core.ViewModels
         public void MergeMarkingsIntoTargets(DateTime date)
         {
             _panelDate = date;
-
+            
             Targets = GetTargets()
                 .GroupJoin(Markings.Where(f => f.Date.Date == date.Date), target => target.Id, marking => marking.Id,
                     (target, markings) => new {target, markings })
                 .SelectMany(group => group.markings.DefaultIfEmpty(),
                     (group, marking) => new TargetModel
                     {
-                        Id = group.target.Id, Name = group.target.Name, IsMarked = marking?.IsMarked ?? false
+                        Id = group.target.Id, Name = group.target.Name, IsMarked = marking != null
                     }).ToList();
         }
 
@@ -33,54 +34,26 @@ namespace MyReview.Core.ViewModels
 
         public List<TargetModel> Targets { get; set; }
         public List<TargetModel> Markings { get; set; }
-
+        
         private List<TargetModel> GetMarkings()
         {
-            var markings = new List<TargetModel>();
-
-            try
+            var dataLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "database.db3");
+            using (var database = new SQLiteConnection(dataLocation))
             {
-                markings.AddRange(File.ReadAllLines("./MarkingsDataFile.txt").Select(line =>
-                {
-                    var lines = line.Split(',');
-                    return new TargetModel
-                    {
-                        Id = int.Parse(lines[0]),
-                        Date = DateTime.Parse(lines[1], new CultureInfo("en-GB")),
-                        IsMarked = true
-                    };
-                }));
+                var t = database.Query<Temporary>("SELECT * FROM Markings;")
+                        ?.Select(s => new TargetModel {Id = s.TargetId, Date = DateTime.Parse(s.Date, new CultureInfo("en-GB"))}).ToList() 
+                        ?? new List<TargetModel>();
+                return t;
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-
-            return markings;
         }
 
         private List<TargetModel> GetTargets()
         {
-            var targets = new List<TargetModel>();
-
-            try
+            var dataLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "database.db3");
+            using (var database = new SQLiteConnection(dataLocation))
             {
-                targets.AddRange(File.ReadAllLines("./TargetDataFile.txt").Select(line =>
-                {
-                    var lines = line.Split(',');
-                    return new TargetModel
-                    {
-                        Id = int.Parse(lines[0]),
-                        Name = lines[1]
-                    };
-                }));
+                return database.Query<TargetModel>("SELECT * FROM Targets;") ?? new List<TargetModel>();
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
-
-            return targets;
         }
 
         private void AddMarking(int itemId, DateTime itemDate)
@@ -92,12 +65,7 @@ namespace MyReview.Core.ViewModels
         {
             try
             {
-                //File.WriteAllLines("./MarkingsDataFile.txt", new List<string>{"Hello World"});
 
-                //var oldMarkings = File.ReadAllLines("./MarkingsDataFile.txt");
-                //var newMarkings = oldMarkings.SkipWhile(line => line.Contains($"{itemId},{_panelDate:d/M/yyyy}"));
-                //File.WriteAllLines("./MarkingsDataFile.txt", newMarkings);
-                //var a = File.ReadAllLines("./MarkingsDataFile.txt");
             }
             catch (Exception e)
             {
@@ -116,5 +84,11 @@ namespace MyReview.Core.ViewModels
                 DeleteMarking(itemId, itemDate);
             }
         }
+    }
+
+    public class Temporary
+    {
+        public int TargetId { get; set; }
+        public string Date { get; set; }
     }
 }

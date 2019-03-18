@@ -1,4 +1,6 @@
-﻿using Foundation;
+﻿using System;
+using System.IO;
+using Foundation;
 using MyReview.Controllers;
 using UIKit;
 
@@ -19,6 +21,10 @@ namespace MyReview
 
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
+            // move database file
+            var dataLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "database.db3");
+            File.Copy("./database.db3", dataLocation, true);
+
             // create a new window instance based on the screen size
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
             Window.RootViewController = new HomeController();

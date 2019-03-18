@@ -329,5 +329,6 @@ ASALocalRun/
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
 /TargetDataFile.txt
-/MyReview.IOs/TargetDataFile.txt
-/MyReview.IOs/MarkingsDataFile.txt
+/MyReview.IOs/TargetDataFile.*
+/MyReview.IOs/MarkingsDataFile.*
+/MyReview.IOs/database.*

@@ -47,7 +47,7 @@ namespace MyReview.Views.Home.Targets
             var action = UIContextualAction.FromContextualActionStyle
             (
                 UIContextualActionStyle.Normal,
-                item.IsMarked ? "UnMarkTarget" : "MarkTarget",
+                item.IsMarked ? "UnMark Target" : "Mark Target",
                 (markTarget, view, success) =>
                 {
                     DataSource[indexPath.Row].IsMarked = !item.IsMarked;
