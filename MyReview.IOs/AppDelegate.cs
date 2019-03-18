@@ -22,8 +22,18 @@ namespace MyReview
         public override bool FinishedLaunching(UIApplication application, NSDictionary launchOptions)
         {
             // move database file
-            var dataLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "database.db3");
-            File.Copy("./database.db3", dataLocation, true);
+            var file = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "database.db3");
+            try
+            {
+                if (!File.Exists(file))
+                {
+                    File.Copy("./database.db3", file);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
 
             // create a new window instance based on the screen size
             Window = new UIWindow(UIScreen.MainScreen.Bounds);
