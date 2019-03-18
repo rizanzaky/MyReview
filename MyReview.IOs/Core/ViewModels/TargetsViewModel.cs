@@ -11,8 +11,20 @@ namespace MyReview.Core.ViewModels
     {
         public TargetsViewModel()
         {
-            Targets = GetTargets();
             Markings = GetMarkings();
+            MergeMarkingsIntoTargets(DateTime.Now);
+        }
+
+        public void MergeMarkingsIntoTargets(DateTime date)
+        {
+            Targets = GetTargets()
+                .GroupJoin(Markings.Where(f => f.Date.Date == date.Date), target => target.Id, marking => marking.Id,
+                    (target, markings) => new {target, markings })
+                .SelectMany(group => group.markings.DefaultIfEmpty(),
+                    (group, marking) => new TargetModel
+                    {
+                        Id = group.target.Id, Name = group.target.Name, IsMarked = marking?.IsMarked ?? false
+                    }).ToList();
         }
 
         public List<TargetModel> Targets { get; set; }
