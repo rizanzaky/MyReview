@@ -16,8 +16,8 @@ namespace MyReview.Controllers
         public HomeController()
         {
             _homeView = new HomeView();
-            _targetsTableSource = new TargetsTableSource();
             _homeViewModel = new TargetsViewModel();
+            _targetsTableSource = new TargetsTableSource { ViewModel = _homeViewModel };
         }
 
         private DateTime PanelDate
