@@ -26,7 +26,7 @@ namespace MyReview.Controllers
             set
             {
                 _panelDate = value;
-                _homeView.DatePanel.DateLabel.Text = value.ToShortDateString();
+                _homeView.DatePanel.DateLabel.Text = $"{value:ddd, dd-MMM-yyyy}";
             }
         }
 
