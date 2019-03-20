@@ -8,6 +8,7 @@ namespace MyReview.Views.Home
     {
         public DatePanelView DatePanel { get; private set; }
         public TargetsTableView TargetsTable { get; private set; }
+        public AddTargetView AddTarget { get; set; }
 
         public HomeView()
         {
@@ -19,6 +20,7 @@ namespace MyReview.Views.Home
             // create
             DatePanel = new DatePanelView();
             TargetsTable = new TargetsTableView();
+            AddTarget = new AddTargetView();
 
             // styles
             BackgroundColor = UIColor.White;
@@ -26,6 +28,7 @@ namespace MyReview.Views.Home
             // hierarchy
             Add(DatePanel);
             Add(TargetsTable);
+            Add(AddTarget);
 
             // constraints
             DatePanel.AlignLeftAnchor(LeftAnchor, 5f);
@@ -35,7 +38,13 @@ namespace MyReview.Views.Home
             TargetsTable.AlignTopAnchor(DatePanel.BottomAnchor, 15f);
             TargetsTable.AlignLeftAnchor(LeftAnchor, 5f);
             TargetsTable.AlignRightAnchor(RightAnchor, 5f);
-            TargetsTable.AlignBottomAnchor(this, 15f);
+            TargetsTable.AlignBottomAnchor(AddTarget.TopAnchor, 15f);
+
+            AddTarget.AlignLeftAnchor(LeftAnchor, 0f);
+            AddTarget.AlignRightAnchor(RightAnchor, 0f);
+            TargetViewBottomAnchor = AddTarget.AlignBottomAnchor(BottomAnchor, 0f);
         }
+
+        public NSLayoutConstraint TargetViewBottomAnchor { get; private set; }
     }
 }

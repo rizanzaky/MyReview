@@ -70,6 +70,7 @@
     <Compile Include="Extensions\LayoutHelper.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Views\Home\AddTargetView.cs" />
     <Compile Include="Views\Home\DatePanelView.cs" />
     <Compile Include="Views\Home\HomeView.cs" />
     <Compile Include="Views\Home\Targets\TargetsTableSource.cs" />

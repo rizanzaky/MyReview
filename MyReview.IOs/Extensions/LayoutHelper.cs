@@ -22,9 +22,9 @@ namespace MyReview.Extensions
             constraint.Active = true;
             return constraint;
         }
-        public static NSLayoutConstraint AlignBottomAnchor(this UIView view, UIView parent, float constant)
+        public static NSLayoutConstraint AlignBottomAnchor(this UIView view, NSLayoutYAxisAnchor anchor, float constant)
         {
-            var constraint = view.BottomAnchor.ConstraintEqualTo(parent.BottomAnchor, -constant);
+            var constraint = view.BottomAnchor.ConstraintEqualTo(anchor, -constant);
             constraint.Active = true;
             return constraint;
         }

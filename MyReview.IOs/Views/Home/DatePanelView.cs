@@ -19,16 +19,16 @@ namespace MyReview.Views.Home
             // create
             LeftButton = new UIButton { TranslatesAutoresizingMaskIntoConstraints = false };
             LeftButton.SetTitle("<", UIControlState.Normal);
-            LeftButton.SetTitleColor(UIColor.Black, UIControlState.Normal);
-            LeftButton.SetTitleColor(UIColor.Gray, UIControlState.Highlighted);
             DateLabel = new UILabel { TranslatesAutoresizingMaskIntoConstraints = false };
             DateLabel.TextAlignment = UITextAlignment.Center;
             RightButton = new UIButton {TranslatesAutoresizingMaskIntoConstraints = false};
             RightButton.SetTitle(">", UIControlState.Normal);
-            RightButton.SetTitleColor(UIColor.Black, UIControlState.Normal);
-            RightButton.SetTitleColor(UIColor.Gray, UIControlState.Highlighted);
 
             // styles
+            LeftButton.SetTitleColor(UIColor.Black, UIControlState.Normal);
+            LeftButton.SetTitleColor(UIColor.Gray, UIControlState.Highlighted);
+            RightButton.SetTitleColor(UIColor.Black, UIControlState.Normal);
+            RightButton.SetTitleColor(UIColor.Gray, UIControlState.Highlighted);
 
             // hierarchy
             Add(LeftButton);
@@ -40,18 +40,18 @@ namespace MyReview.Views.Home
 
             LeftButton.AlignTopAnchor(TopAnchor, 5f);
             LeftButton.AlignLeftAnchor(LeftAnchor, 10f);
-            LeftButton.AlignBottomAnchor(this, 5f);
+            LeftButton.AlignBottomAnchor(BottomAnchor, 5f);
             LeftButton.AlignWidthAnchor(80f);
             LeftButton.AlignHeightAnchor(50f);
 
             DateLabel.AlignTopAnchor(TopAnchor, 5f);
-            DateLabel.AlignBottomAnchor(this, 5f);
+            DateLabel.AlignBottomAnchor(BottomAnchor, 5f);
             DateLabel.AlignLeftAnchor(LeftButton.RightAnchor, 10f);
             DateLabel.AlignRightAnchor(RightButton.LeftAnchor, 10f);
 
             RightButton.AlignTopAnchor(TopAnchor, 5f);
             RightButton.AlignRightAnchor(RightAnchor, 10f);
-            RightButton.AlignBottomAnchor(this, 5f);
+            RightButton.AlignBottomAnchor(BottomAnchor, 5f);
             RightButton.AlignWidthAnchor(80f);
             RightButton.AlignHeightAnchor(50f);
         }
